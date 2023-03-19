@@ -6,21 +6,11 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/16 18:47:25 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/17 18:42:31 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		count_half(int *stack)
-{
-	int i;
-
-	i = 0;
-	while (stack[i])
-		i++;
-	return (i / 2);
-}
 
 int		ft_is_sorted_a(int *stack_a)
 {
@@ -55,6 +45,7 @@ void	stack_printer(int *stack_a, int *stack_b)
 	int i;
 
 	i = 0;
+	printf("\n");
 	while (stack_a[i] || stack_b[i])
 	{
 		if (stack_a[i])
@@ -75,4 +66,32 @@ void	int_array_copy(int *stack_a, int *sorted)
 	i = -1;
 	while (stack_a[++i])
 		sorted[i] = stack_a[i];
+}
+
+int	insert_sort(int *stack_a, int argc)
+{
+	int i;
+	int j;
+	int temp;
+	int	*sorted;
+
+	sorted = (int *)malloc(sizeof(int) * argc);
+	if (!sorted)
+		return (0);
+	int_array_copy(stack_a, sorted);
+	i = -1;
+	while (sorted[++i])
+	{
+		j = i;
+		while (j > 0 && sorted[j - 1] > sorted[j])
+		{
+			temp = sorted[j];
+			sorted[j] = sorted[j - 1];
+			sorted[j - 1] = temp;
+			j--;
+		}
+	}
+	temp = sorted[i / 2];
+	free(sorted);
+	return (temp);
 }
