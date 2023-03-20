@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/17 18:42:31 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:25:33 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,29 @@ int		ft_is_sorted_b(int *stack_b)
 	}
 	return (1);
 }
+void	one_stack_printer(int *stack_a)
+{
+	int i;
+
+	i = -1;
+	printf("\n");
+	while (stack_a[++i])
+	{
+		if (stack_a[i])
+			ft_printf("%d\t", stack_a[i]);
+		else
+			ft_printf("\t");
+		printf("\n");
+	}
+}
 
 void	stack_printer(int *stack_a, int *stack_b)
 {
 	int i;
+	int gate;
 
 	i = 0;
+	gate = 1;
 	printf("\n");
 	while (stack_a[i] || stack_b[i])
 	{
@@ -52,9 +69,12 @@ void	stack_printer(int *stack_a, int *stack_b)
 			ft_printf("%d\t", stack_a[i]);
 		else
 			ft_printf("\t");
-		if (stack_b[i])
+		if (stack_b[i] && gate)
 			ft_printf("%d", stack_b[i]);
-		ft_printf("\n");
+		else
+			gate = 0;
+		if (stack_a[i])
+			ft_printf("\n");
 		i++;
 	}
 }
