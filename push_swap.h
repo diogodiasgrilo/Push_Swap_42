@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 12:21:59 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:01:22 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ra(int *stack_a);
 void	rra(int *stack_a);
 int		count_all(int *stack);
 int		count_half(int *stack);
+int		find_duplicates(int *stack);
 int		ft_is_sorted_b(int *stack_b);
 int		ft_is_sorted_a(int *stack_a);
 void	one_stack_printer(int *stack_a);

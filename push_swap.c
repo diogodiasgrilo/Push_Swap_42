@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:40:23 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 17:07:18 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:26:47 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ int	push_swap(int *stack_a, int *stack_b, int middle, int size)
 	// printf("middle: %d\n", middle);
 	while (counter < half)
 	{
-		if (stack_a[0] < middle && stack_a[1] < middle && stack_a[0] > stack_a[1])
-			sa(stack_a);
 		if (stack_a[0] < middle)
+		{
+			if (stack_a[1] < middle && stack_a[0] > stack_a[1])
+				sa(stack_a);
 			pb(stack_a, stack_b, &counter);
+			if (*(stack_b + 1) && stack_b[0] < stack_b[1])
+				sb(stack_b);
+		}
 		else
 		{
 			size = count_all(stack_a);
@@ -42,17 +46,18 @@ int	push_swap(int *stack_a, int *stack_b, int middle, int size)
 					sb(stack_b);
 				size = count_all(stack_a);
 			}
-			while (counter < half && count_all(stack_a) >= 3)
+			while (counter < half && count_all(stack_a) > 7)
 			{
-				if (stack_a[0] < middle && stack_a[1] < middle && stack_a[0] > stack_a[1])
-					sa(stack_a);
-				if (stack_a[0] < middle)
-					pb(stack_a, stack_b, &counter);
-				else
+				if (stack_a[0] <= middle)
 				{
-					ra(stack_a);
-					ra_counter++;
+					if (stack_a[1] < middle && stack_a[0] > stack_a[1])
+						sa(stack_a);
+					pb(stack_a, stack_b, &counter);
+					if (*(stack_b + 1) && stack_b[0] < stack_b[1])
+						sb(stack_b);
 				}
+				else if (++ra_counter)
+					ra(stack_a);
 			}
 			break;
 		}
@@ -72,11 +77,6 @@ int	*the_big_caller(int *stack_a, int argc, int gate)
 	while (i < argc)
 		stack_b[i++] = 0;
 	middle_one  = insert_sort(stack_a, argc);
-	if(ft_is_sorted_a(stack_a))
-	{
-		free(stack_b);
-		return (stack_a);
-	}
 	while (!ft_is_sorted_a(stack_a))
 	{
 		i = push_swap(stack_a, stack_b, insert_sort(stack_a, argc), count_all(stack_a));
@@ -86,8 +86,6 @@ int	*the_big_caller(int *stack_a, int argc, int gate)
 				rra(stack_a);
 		}
 	}
-	if (!ft_is_sorted_a(stack_a))
-		sa(stack_a);
 	if (count_all(stack_b) == 1)
 	{
 		if (!ft_is_sorted_b(stack_b))
@@ -107,9 +105,9 @@ int	*the_big_caller(int *stack_a, int argc, int gate)
 		free(stack_b);
 		return (stack_a);
 	}
-	printf("\nstack_a\n");
-	stack_printer(stack_a, stack_b);
-	printf("\nend\n");
+	// printf("\nstack_a\n");
+	// stack_printer(stack_a, stack_b);
+	// printf("\nend\n");
 	////////
 	i = 0;
 	while (stack_a[i] != middle_one)
@@ -126,21 +124,33 @@ int	*the_big_caller(int *stack_a, int argc, int gate)
 int	main(int argc, char **argv)
 {
 	int	i;
+	int j;
 	int	gate;
 	int	*stack_a;
 	int *receiver;
+	int	*tester;
 
 	// t_chunk	*chunks;
 	i = -1;
 	gate = 0;
 	stack_a = (int *)malloc(sizeof(int) * argc - 1);
+	tester = (int *)malloc(sizeof(int) * argc - 1);
 	while (++i < argc - 1)
 		stack_a[i] = ft_atoi(argv[argc - i - 1]);
+	if (find_duplicates(stack_a))
+		return (0);
 	while(!ft_is_sorted_a(stack_a))
 	{
 		receiver = the_big_caller(stack_a, count_all(stack_a) + 1, gate);
 		if (ft_is_sorted_a(receiver))
 			break;
+		j = -1;
+		i = count_all(receiver);
+		while (stack_a[++i])
+			tester[++j] = stack_a[i];
+		tester[j] = 0;
+		if (!ft_is_sorted_a(tester))
+			continue;
 		i = -1;
 		while (receiver[++i])
 			stack_a[i] = receiver[i];
@@ -149,8 +159,10 @@ int	main(int argc, char **argv)
 		free(receiver);
 		gate++;
 	}
-	printf("\nstack_a\n");
-	one_stack_printer(stack_a);
-	printf("\nend\n");
+	// printf("\nstack_a\n");
+	// one_stack_printer(stack_a);
+	// printf("\nend\n");
+	free(stack_a);
+	free(tester);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 12:21:51 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/20 18:02:23 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,10 @@ void	ra(int *stack_a)
 	int i;
 	int temp;
 
-	i = 0;
+	i = -1;
 	temp = stack_a[0];
-	while (stack_a[i])
-	{
+	while (stack_a[++i])
 		stack_a[i] = stack_a[i + 1];
-		i++;
-	}
 	stack_a[i - 1] = temp;
 	ft_printf("ra\n");
 }
