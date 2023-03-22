@@ -6,15 +6,13 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 18:38:05 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:50:49 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft/libft.h"
-#include "ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -32,6 +30,7 @@ void	sb(int *stack_b);
 void	sa(int *stack_a);
 void	ra(int *stack_a);
 void	rra(int *stack_a);
+int	ft_atoi(const char *str);
 int		count_all(int *stack);
 int		count_half(int *stack);
 int		find_duplicates(int *stack);

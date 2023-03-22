@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 12:25:33 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:56:45 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_is_sorted_a(int *stack_a)
 	int i;
 
 	i = 0;
-	while (stack_a[i + 1])
+	while (stack_a && stack_a[i + 1])
 	{
 		if (stack_a[i] > stack_a[i + 1])
 			return (0);
@@ -33,7 +33,7 @@ int		ft_is_sorted_b(int *stack_b)
 	i = 0;
 	while (stack_b[i + 1])
 	{
-		if (stack_b[i] < stack_b[i + 1])
+		if (stack_b && stack_b[i] < stack_b[i + 1])
 			return (0);
 		i++;
 	}
@@ -48,9 +48,9 @@ void	one_stack_printer(int *stack_a)
 	while (stack_a[++i])
 	{
 		if (stack_a[i])
-			ft_printf("%d\t", stack_a[i]);
+			printf("%d\t", stack_a[i]);
 		else
-			ft_printf("\t");
+			printf("\t");
 		printf("\n");
 	}
 }
@@ -66,15 +66,15 @@ void	stack_printer(int *stack_a, int *stack_b)
 	while (stack_a[i] || stack_b[i])
 	{
 		if (stack_a[i])
-			ft_printf("%d\t", stack_a[i]);
+			printf("%d\t", stack_a[i]);
 		else
-			ft_printf("\t");
+			printf("\t");
 		if (stack_b[i] && gate)
-			ft_printf("%d", stack_b[i]);
+			printf("%d", stack_b[i]);
 		else
 			gate = 0;
 		if (stack_a[i])
-			ft_printf("\n");
+			printf("\n");
 		i++;
 	}
 }
@@ -84,7 +84,7 @@ void	int_array_copy(int *stack_a, int *sorted)
 	int i;
 
 	i = -1;
-	while (stack_a[++i])
+	while (stack_a && sorted && stack_a[++i])
 		sorted[i] = stack_a[i];
 }
 

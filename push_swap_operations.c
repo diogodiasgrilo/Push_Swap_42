@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/20 18:37:33 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:47:09 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	pb(int *stack_a, int *stack_b, int *counter)
 	stack_a[j - 1] = 0;
 	if (counter)
 		*counter += 1;
-	ft_printf("pb\n");
+	write(1, "pb\n", 3);
 }
 
 void	pa(int *stack_a, int *stack_b, int *counter)
@@ -57,7 +57,7 @@ void	pa(int *stack_a, int *stack_b, int *counter)
 	stack_b[j - 1] = 0;
 	if (counter)
 		*counter += 1;
-	ft_printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 void	sb(int *stack_b)
@@ -67,7 +67,7 @@ void	sb(int *stack_b)
 	temp = stack_b[0];
 	stack_b[0] = stack_b[1];
 	stack_b[1] = temp;
-	ft_printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 void	sa(int *stack_a)
@@ -77,7 +77,7 @@ void	sa(int *stack_a)
 	temp = stack_a[0];
 	stack_a[0] = stack_a[1];
 	stack_a[1] = temp;
-	ft_printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 void	ra(int *stack_a)
@@ -90,7 +90,7 @@ void	ra(int *stack_a)
 	while (stack_a[++i])
 		stack_a[i] = stack_a[i + 1];
 	stack_a[i - 1] = temp;
-	ft_printf("ra\n");
+	write(1, "ra\n", 3);
 }
 
 void	rra(int *stack_a)
@@ -109,5 +109,5 @@ void	rra(int *stack_a)
 		i--;
 	}
 	stack_a[0] = temp;
-	ft_printf("rra\n");
+	write(1, "rra\n", 4);
 }
