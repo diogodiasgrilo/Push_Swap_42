@@ -6,13 +6,13 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:40:23 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/21 21:38:46 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/04 10:58:14 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push_swap(int *stack_a, int *stack_b, int middle, int size)
+void	push_swap(int *stack_a, int *stack_b, int middle, int size)
 {
 	int half;
 	int	checker;
@@ -27,38 +27,21 @@ int	push_swap(int *stack_a, int *stack_b, int middle, int size)
 	while (counter < half)
 	{
 		if (stack_a[0] < middle)
-		{
-			if (stack_a[0] > stack_a[1])
-				sa(stack_a);
 			pb(stack_a, stack_b, &counter);
-			if (*(stack_b + 1) && stack_b[0] < stack_b[1])
-				sb(stack_b);
-		}
 		else
 		{
 			size = count_all(stack_a);
-			// printf("size: %d\n", size);
 			while (stack_a[size] < middle && counter < half && !ft_is_sorted_a(stack_a))
 			{
 				rra(stack_a);
-				if (stack_a[0] > stack_a[1])
-					sa(stack_a);
 				pb(stack_a, stack_b, &counter);
-				if (*(stack_b + 1) && stack_b[0] < stack_b[1])
-					sb(stack_b);
 				size = count_all(stack_a);
 			}
 			while (!ft_is_sorted_a(stack_a))
 			{
 				if (stack_a[0] < middle)
-				{
-					if (stack_a[0] > stack_a[1])
-						sa(stack_a);
 					pb(stack_a, stack_b, &counter);
-					if (*(stack_b + 1) && stack_b[0] < stack_b[1])
-						sb(stack_b);
-				}
-				else if (++ra_counter)
+				else
 				{
 					ra(stack_a);
 					counter++;
@@ -72,121 +55,153 @@ int	push_swap(int *stack_a, int *stack_b, int middle, int size)
 			break;
 		}
 	}
-	return (ra_counter);
 }
 
-int	*the_big_caller(int *stack_a, int argc, int gate)
+int	*the_big_caller(int *stack_a, int argc, int *borders)
 {
 	int	i;
-	int	middle_one;
 	int	*stack_b;
-	int	*stack_final;
 
 	stack_b = (int *)malloc(sizeof(int) * argc);
 	if (!stack_b)
 		return (0);
-	i = 0;
-	while (i < argc)
-		stack_b[i++] = '\0';
-	middle_one  = insert_sort(stack_a, argc);
-	while (!ft_is_sorted_a(stack_a))
+	i = -1;
+	while (count_all(stack_a) > 6)
 	{
-		i = push_swap(stack_a, stack_b, insert_sort(stack_a, argc), count_all(stack_a));
-		if (gate > 0)
-		{
-			while (--i > 0)
-				rra(stack_a);
-		}
+		push_swap(stack_a, stack_b, insert_sort(stack_a, (count_all(stack_a) + 1), 6), count_all(stack_a) / 3);
+		borders[++i] = stack_b[0];
 	}
-	if (count_all(stack_b) == 1)
+	while (count_all(stack_a) > 1)
 	{
-		if (!ft_is_sorted_b(stack_b))
-			sb(stack_b);
-		while(*stack_b)
+		push_swap(stack_a, stack_b, insert_sort(stack_a, count_all(stack_a) + 1, 2), count_all(stack_a));
+		borders[++i] = stack_b[0];
+	}
+	borders[i] = '\0';
+	if (!ft_is_sorted_a(stack_a))
+		sa(stack_a);
+	return (stack_b);
+}
+
+int		direction_teller(int *stack_b, int *borders, int index)
+{
+	int i;
+
+	i = -1;
+	if (!borders)
+	{
+		while (++i != count_all(stack_b) - index + 1)
+			if (stack_b[i] == find_biggest_in_array(stack_b))
+				return (1);
+	}
+	else
+	{
+		while (stack_b[++i] != borders[index])
+		if (stack_b[i] == find_biggest_in_array(stack_b))
+			return (1);
+	}
+	return (0);
+}
+
+void	final_chapter(int *stack_a, int *stack_b, int *borders)
+{
+	int	rb_counter;
+	int	biggest_index;
+
+	rb_counter = 0;
+	// MAKE SMALLEST GO to BOTTOM OF A TO CUT STEPS
+	while (stack_b[0] != borders[0] || rb_counter > 0)
+	{
+		if (stack_b[0] == find_biggest_in_array(stack_b))
 			pa(stack_a, stack_b, 0);
+		else if (direction_teller(stack_b, borders, 0))
+		{
+			while (stack_b[0] != find_biggest_in_array(stack_b))
+			{
+				rb(stack_b);
+				rb_counter++;
+			}
+			pa(stack_a, stack_b, 0);
+		}
+		else if (rb_counter)
+		{
+			while (stack_b[0] != find_biggest_in_array(stack_b))
+			{
+				rrb(stack_b);
+				rb_counter--;
+			}
+			pa(stack_a, stack_b, 0);
+		}
+
 	}
+	// final_chapter = the_big_caller_for_b(stack_b, count_all(stack_b) + 1);
 	while (*stack_b)
 	{
-		if (stack_b[0] < stack_b[1])
-			sb(stack_b);
-		else if (*stack_b)
+		biggest_index = find_biggest_index(stack_b);
+		if (biggest_index < count_all(stack_b) / 2)
+		{
+			while (stack_b[0] != find_biggest_in_array(stack_b))
+			{
+				if (stack_b[0] == find_smallest_in_array(stack_b))
+				{
+					pa(stack_a, stack_b, 0);
+					ra(stack_a);
+				}
+				rb(stack_b);
+			}
 			pa(stack_a, stack_b, 0);
+		}
+		else
+		{
+			while (stack_b[0] != find_biggest_in_array(stack_b))
+			{
+				if (stack_b[0] == find_smallest_in_array(stack_b))
+					{
+						pa(stack_a, stack_b, 0);
+						ra(stack_a);
+					}
+				rrb(stack_b);
+			}
+			pa(stack_a, stack_b, 0);
+		}
 	}
-	if (ft_is_sorted_a(stack_a))
-	{
-		free(stack_b);
-		return (stack_a);
-	}
-	// printf("\nstack_a\n");
-	// stack_printer(stack_a, stack_b);
-	// printf("\nend\n");
-	////////
-	i = 0;
-	while (stack_a[i] != middle_one)
-		i++;
-	stack_final = (int *)malloc(sizeof(int) * i + 1);
-	if (!stack_final)
-		return (0);
-	stack_final[++i] = '\0';
-	while (--i >= 0)
-		stack_final[i] = stack_a[i];
-	free(stack_b);
-	return (stack_final);
+	while (stack_a[count_all(stack_a)] != find_biggest_in_array(stack_a))
+		rra(stack_a);
 }
 
 int	main(int argc, char **argv)
 {
 	int	i;
-	int j;
 	int	gate;
 	int	*stack_a;
-	int *receiver;
-	int	*tester;
+	int *stack_b;
+	int	*borders;
 
 	// t_chunk	*chunks;
 	i = 0;
 	gate = 0;
 	stack_a = (int *)malloc(sizeof(int) * argc - 1);
-	tester = (int *)malloc(sizeof(int) * argc - 1);
+	borders = (int *)malloc(sizeof(int) * argc - 1);
 	// printf("region-stack_a: %p\n", stack_a);
 	// printf("region-tester: %p\n", tester);
-	if (!stack_a || !tester)
+	if (!stack_a || !borders)
 		return (0);
 	while (++i < argc)
 		stack_a[i - 1] = ft_atoi(argv[i]);
 	if (find_duplicates(stack_a))
 	{
 		free(stack_a);
-		free(tester);
+		free(borders);
 		return (0);
 	}
 	if (count_all(stack_a) == 1)
 		if (!ft_is_sorted_a(stack_a))
 			sa(stack_a);
-	while(!ft_is_sorted_a(stack_a))
-	{
-		receiver = the_big_caller(stack_a, count_all(stack_a) + 1, gate);
-		if (ft_is_sorted_a(stack_a))
-			break;
-		j = -1;
-		i = count_all(receiver);
-		while (stack_a[++i])
-			tester[++j] = stack_a[i];
-		tester[j] = '\0';
-		if (!ft_is_sorted_a(tester))
-		{
-			gate++;
-			continue;
-		}
-		i = -1;
-		while (receiver[++i])
-			stack_a[i] = receiver[i];
-		stack_a[i] = '\0';
-		gate++;
-	}
+	stack_b = the_big_caller(stack_a, count_all(stack_a) + 1, borders);
+	final_chapter(stack_a, stack_b, borders);
+	// printf("one: %d, two:%d, three:%d\n", borders[0], borders[1], borders[2]);
 	// one_stack_printer(stack_a);
 	// printf("operations: %d\n", operation_count);
 	free(stack_a);
-	free(tester);
+	free(stack_b);
 	return (0);
 }

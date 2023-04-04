@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/21 11:47:09 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:22:20 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ void	pa(int *stack_a, int *stack_b, int *counter)
 	write(1, "pa\n", 3);
 }
 
+void	ss(int *stack_a, int * stack_b)
+{
+	int temp;
+
+	temp = stack_a[0];
+	stack_a[0] = stack_a[1];
+	stack_a[1] = temp;
+	temp = stack_b[0];
+	stack_b[0] = stack_b[1];
+	stack_b[1] = temp;
+	write(1, "ss\n", 3);
+}
+
 void	sb(int *stack_b)
 {
 	int temp;
@@ -90,6 +103,7 @@ void	ra(int *stack_a)
 	while (stack_a[++i])
 		stack_a[i] = stack_a[i + 1];
 	stack_a[i - 1] = temp;
+	stack_a[i] = '\0';
 	write(1, "ra\n", 3);
 }
 
@@ -110,4 +124,87 @@ void	rra(int *stack_a)
 	}
 	stack_a[0] = temp;
 	write(1, "rra\n", 4);
+}
+
+void	rr(int *stack_a, int *stack_b)
+{
+	int i;
+	int temp;
+
+	i = -1;
+	temp = stack_a[0];
+	while (stack_a[++i])
+		stack_a[i] = stack_a[i + 1];
+	stack_a[i - 1] = temp;
+	stack_a[i] = '\0';
+	i = -1;
+	temp = stack_b[0];
+	while (stack_b[++i])
+		stack_b[i] = stack_b[i + 1];
+	stack_b[i - 1] = temp;
+	stack_b[i] = '\0';
+	write(1, "rr\n", 3);
+}
+
+void	rb(int *stack_b)
+{
+	int i;
+	int temp;
+
+	i = -1;
+	temp = stack_b[0];
+	while (stack_b[++i])
+		stack_b[i] = stack_b[i + 1];
+	stack_b[i - 1] = temp;
+	stack_b[i] = '\0';
+	write(1, "rb\n", 3);
+}
+
+void	rrb(int *stack_b)
+{
+	int	i;
+	int	temp;
+
+	i = 0;
+	while (stack_b[i])
+		i++;
+	temp = stack_b[i - 1];
+	i--;
+	while (i > 0)
+	{
+		stack_b[i] = stack_b[i - 1];
+		i--;
+	}
+	stack_b[0] = temp;
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(int *stack_a, int *stack_b)
+{
+	int	i;
+	int	temp;
+
+	i = 0;
+	while (stack_a[i])
+		i++;
+	temp = stack_a[i - 1];
+	i--;
+	while (i > 0)
+	{
+		stack_a[i] = stack_a[i - 1];
+		i--;
+	}
+	stack_a[0] = temp;
+	i = 0;
+	while (stack_b[i])
+		i++;
+	temp = stack_b[i - 1];
+	i--;
+	while (i > 0)
+	{
+		stack_b[i] = stack_b[i - 1];
+		i--;
+	}
+	stack_b[0] = temp;
+	write(1, "rrr\n", 4);
 }

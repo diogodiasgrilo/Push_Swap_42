@@ -6,20 +6,143 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/21 19:56:45 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/03 23:13:02 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int check_for_bigger(int *stack_a, int *stack_b)
+{
+	int i;
+
+	i = 0;
+	while (stack_b[i])
+	{
+		if (stack_a[0] < stack_b[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	find_biggest_in_chunk(int *stack_b, int *borders, int index, int max_index)
+{
+	int	i;
+	int	biggest;
+
+	i = -1;
+	biggest = stack_b[0];
+	while (stack_b[++i] != borders[index])
+	{
+		if (stack_b[i] > biggest)
+			biggest = stack_b[i];
+	}
+	while (max_index >= 0)
+	{
+		if (stack_b[count_all(stack_b) - max_index + 1] > biggest)
+			biggest = stack_b[count_all(stack_b) - max_index + 1];
+		max_index--;
+	}
+	return (biggest);
+}
+
+int	find_smallest_in_chunk(int *stack_b, int *borders, int index, int max_index)
+{
+	int	i;
+	int	smallest;
+
+	i = -1;
+	smallest = stack_b[0];
+	while (stack_b[++i] != borders[index])
+	{
+		if (stack_b[i] < smallest)
+			smallest = stack_b[i];
+	}
+	while (max_index >= 0)
+	{
+		if (stack_b[count_all(stack_b) - max_index + 1] < smallest)
+			smallest = stack_b[count_all(stack_b) - max_index + 1];
+		max_index--;
+	}
+	return (smallest);
+}
+
+int	find_smallest_in_array(int *stack_a)
+{
+	int i;
+	int smallest;
+
+	i = 0;
+	smallest = stack_a[0];
+	while (stack_a[i])
+	{
+		if (stack_a[i] < smallest)
+			smallest = stack_a[i];
+		i++;
+	}
+	return (smallest);
+}
+
+int find_biggest_index(int *stack)
+{
+	int i;
+	int biggest;
+	int biggest_index;
+
+	i = 0;
+	biggest = stack[0];
+	biggest_index = 0;
+	while (stack[i])
+	{
+		if (stack[i] > biggest)
+		{
+			biggest = stack[i];
+			biggest_index = i;
+		}
+		i++;
+	}
+	return (biggest_index);
+}
+
+int find_biggest_in_array(int *stack_a)
+{
+	int i;
+	int biggest;
+
+	i = 0;
+	biggest = stack_a[0];
+	while (stack_a[i])
+	{
+		if (stack_a[i] > biggest)
+			biggest = stack_a[i];
+		i++;
+	}
+	return (biggest);
+}
+
+int		ft_is_sorted_to_biggest(int *stack_a)
+{
+	int i;
+
+	i = 0;
+	while (*stack_a && stack_a[i + 1] != find_biggest_in_array(stack_a))
+	{
+		if (*stack_a && stack_a[i] > stack_a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int		ft_is_sorted_a(int *stack_a)
 {
 	int i;
 
 	i = 0;
-	while (stack_a && stack_a[i + 1])
+	while (*stack_a && stack_a[i + 1])
 	{
-		if (stack_a[i] > stack_a[i + 1])
+		if (*stack_a && stack_a[i] > stack_a[i + 1])
 			return (0);
 		i++;
 	}
@@ -31,7 +154,7 @@ int		ft_is_sorted_b(int *stack_b)
 	int i;
 
 	i = 0;
-	while (stack_b[i + 1])
+	while (stack_b && stack_b[i + 1])
 	{
 		if (stack_b && stack_b[i] < stack_b[i + 1])
 			return (0);
@@ -86,16 +209,17 @@ void	int_array_copy(int *stack_a, int *sorted)
 	i = -1;
 	while (stack_a && sorted && stack_a[++i])
 		sorted[i] = stack_a[i];
+	sorted[i] = '\0';
 }
 
-int	insert_sort(int *stack_a, int argc)
+int	insert_sort(int *stack_a, int argc, int divide)
 {
 	int i;
 	int j;
 	int temp;
 	int	*sorted;
 
-	sorted = (int *)malloc(sizeof(int) * argc);
+	sorted = (int *)malloc(sizeof(int) * argc + 1);
 	if (!sorted)
 		return (0);
 	int_array_copy(stack_a, sorted);
@@ -111,7 +235,7 @@ int	insert_sort(int *stack_a, int argc)
 			j--;
 		}
 	}
-	temp = sorted[i / 2];
+	temp = sorted[i / divide];
 	free(sorted);
 	return (temp);
 }
