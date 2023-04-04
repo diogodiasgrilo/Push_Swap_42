@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/03 23:13:02 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:19:41 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,19 @@ int	find_biggest_in_chunk(int *stack_b, int *borders, int index, int max_index)
 	return (biggest);
 }
 
-int	find_smallest_in_chunk(int *stack_b, int *borders, int index, int max_index)
+int	find_smallest_in_chunk(int *stack_b, int *borders, int index)
 {
 	int	i;
 	int	smallest;
 
-	i = -1;
-	smallest = stack_b[0];
-	while (stack_b[++i] != borders[index])
+	i = 0;
+	if (stack_b[0] > borders[index])
+		smallest = stack_b[0];
+	while (stack_b[i])
 	{
-		if (stack_b[i] < smallest)
+		if (stack_b[i] < smallest && stack_b[i] > borders[index])
 			smallest = stack_b[i];
-	}
-	while (max_index >= 0)
-	{
-		if (stack_b[count_all(stack_b) - max_index + 1] < smallest)
-			smallest = stack_b[count_all(stack_b) - max_index + 1];
-		max_index--;
+		i++;
 	}
 	return (smallest);
 }
@@ -212,16 +208,11 @@ void	int_array_copy(int *stack_a, int *sorted)
 	sorted[i] = '\0';
 }
 
-int	insert_sort(int *stack_a, int argc, int divide)
+int	insert_sort(int *stack_a, int divide, int *sorted)
 {
 	int i;
 	int j;
 	int temp;
-	int	*sorted;
-
-	sorted = (int *)malloc(sizeof(int) * argc + 1);
-	if (!sorted)
-		return (0);
 	int_array_copy(stack_a, sorted);
 	i = -1;
 	while (sorted[++i])
@@ -235,7 +226,7 @@ int	insert_sort(int *stack_a, int argc, int divide)
 			j--;
 		}
 	}
+	sorted[i] = '\0';
 	temp = sorted[i / divide];
-	free(sorted);
 	return (temp);
 }

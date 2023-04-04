@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/03 23:13:12 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:19:48 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	one_stack_printer(int *stack_a);
 int		find_smallest_in_array(int *stack_a);
 int		find_biggest_index(int *stack);
 int 	find_biggest_in_array(int *stack_a);
-int		insert_sort(int *stack_a, int argc, int divide);
+int		insert_sort(int *stack_a, int divide, int *sorted);
 int		ft_is_sorted_to_biggest(int *stack_a);
 int 	find_biggest_in_array(int *stack_a);
 void	int_array_copy(int *stack_a, int *sorted);
@@ -57,9 +57,10 @@ void	pb(int *stack_a, int *stack_b, int *counter);
 int 	check_for_bigger(int *stack_a, int *stack_b);
 void	pa(int *stack_a, int *stack_b, int *counter);
 int 	check_for_bigger(int *stack_a, int *stack_b);
-int		*the_big_caller(int *stack_a, int argc, int *borders);
-void	push_swap(int *stack_a, int *stack_b, int middle, int size);
-int		find_smallest_in_chunk(int *stack_b, int *borders, int index, int max_index);
+void	the_big_caller(int *stack_a, int argc);
+void	final_chapter(int *stack_a, int *stack_b);
+void	push_swap(int *stack_a, int *stack_b, int middle, int size, int *sorted);
+int		find_smallest_in_chunk(int *stack_b, int *borders, int index);
 int		find_biggest_in_chunk(int *stack_b, int *borders, int index, int max_index);
 
 # endif
