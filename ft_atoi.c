@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:37:44 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/21 11:50:42 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:34:07 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		total *= 10;
-		total += str[i] - 48;
-		i++;
+		total += str[i++] - 48;
 	}
 	return (total * sign);
 }
