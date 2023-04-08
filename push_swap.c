@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:40:23 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/08 13:15:23 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/08 13:36:42 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	push_swap(int *stack_a, int *stack_b, int middle, int magic_x2, int *sorted
 		}
 	}
 }
-
-// if (stack_b[0] < sorted[count_all(sorted) / magic_x2] && (magic_x2 > 2 || count_all(stack_b) > 99))
 
 void	the_big_caller(int *stack_a, int count)
 {
