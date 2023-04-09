@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/06 20:33:27 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:45:32 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pb(int *stack_a, int *stack_b, int *counter)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (stack_b[j])
@@ -28,7 +28,7 @@ void	pb(int *stack_a, int *stack_b, int *counter)
 	stack_b[0] = stack_a[0];
 	stack_a[0] = 0;
 	j = 0;
-	while(stack_a[++j])
+	while (stack_a[++j])
 		stack_a[j - 1] = stack_a[j];
 	stack_a[j - 1] = 0;
 	if (counter)
@@ -38,7 +38,7 @@ void	pb(int *stack_a, int *stack_b, int *counter)
 
 void	pa(int *stack_a, int *stack_b, int *counter)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (stack_a[j])
@@ -52,7 +52,7 @@ void	pa(int *stack_a, int *stack_b, int *counter)
 	stack_a[0] = stack_b[0];
 	stack_b[0] = 0;
 	j = 0;
-	while(stack_b[++j])
+	while (stack_b[++j])
 		stack_b[j - 1] = stack_b[j];
 	stack_b[j - 1] = 0;
 	if (counter)
@@ -62,7 +62,7 @@ void	pa(int *stack_a, int *stack_b, int *counter)
 
 void	sb(int *stack_b)
 {
-	int temp;
+	int	temp;
 
 	temp = stack_b[0];
 	stack_b[0] = stack_b[1];
@@ -72,7 +72,7 @@ void	sb(int *stack_b)
 
 void	sa(int *stack_a)
 {
-	int temp;
+	int	temp;
 
 	temp = stack_a[0];
 	stack_a[0] = stack_a[1];
@@ -80,9 +80,9 @@ void	sa(int *stack_a)
 	write(1, "sa\n", 3);
 }
 
-void	ss(int *stack_a, int * stack_b)
+void	ss(int *stack_a, int *stack_b)
 {
-	int temp;
+	int	temp;
 
 	temp = stack_a[0];
 	stack_a[0] = stack_a[1];

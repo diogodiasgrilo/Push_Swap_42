@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_counters.c                               :+:      :+:    :+:   */
+/*   ps_counters.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:32:02 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/06 19:32:11 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:45:12 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		count_half(int *stack)
+int	count_half(int *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack && stack[i])
@@ -22,9 +22,9 @@ int		count_half(int *stack)
 	return (i / 2);
 }
 
-int		count_all(int *stack)
+int	count_all(int *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack && stack[i])
@@ -32,10 +32,10 @@ int		count_all(int *stack)
 	return (i - 1);
 }
 
-int		find_non_letters(char **argv)
+int	find_non_letters(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (argv[++i])
@@ -51,10 +51,10 @@ int		find_non_letters(char **argv)
 	return (0);
 }
 
-int		find_duplicates(int *stack)
+int	find_duplicates(int *stack)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = 0;

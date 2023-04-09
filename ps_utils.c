@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_helper.c                                 :+:      :+:    :+:   */
+/*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:45:25 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/06 19:38:03 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/09 05:45:41 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	find_smallest_in_array(int *stack_a)
 {
-	int i;
-	int smallest;
+	int	i;
+	int	smallest;
 
 	i = 0;
 	smallest = stack_a[0];
@@ -28,11 +28,11 @@ int	find_smallest_in_array(int *stack_a)
 	return (smallest);
 }
 
-int find_biggest_index(int *stack)
+int	find_biggest_index(int *stack)
 {
-	int i;
-	int biggest;
-	int biggest_index;
+	int	i;
+	int	biggest;
+	int	biggest_index;
 
 	i = 0;
 	biggest = stack[0];
@@ -51,8 +51,8 @@ int find_biggest_index(int *stack)
 
 int	find_biggest_in_array(int *stack_a)
 {
-	int i;
-	int biggest;
+	int	i;
+	int	biggest;
 
 	i = 0;
 	biggest = stack_a[0];
@@ -67,8 +67,8 @@ int	find_biggest_in_array(int *stack_a)
 
 int	find_second_biggest_in_array(int *stack, int first_big)
 {
-	int i;
-	int second_biggest;
+	int	i;
+	int	second_biggest;
 
 	i = 0;
 	second_biggest = stack[0];
@@ -81,65 +81,14 @@ int	find_second_biggest_in_array(int *stack, int first_big)
 	return (second_biggest);
 }
 
-int		ft_is_sorted_a(int *stack_a)
-{
-	int i;
-
-	i = 0;
-	while (*stack_a && stack_a[i + 1])
-	{
-		if (*stack_a && stack_a[i] > stack_a[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int		ft_is_sorted_b(int *stack_b)
-{
-	int i;
-
-	i = 0;
-	while (stack_b && stack_b[i + 1])
-	{
-		if (stack_b && stack_b[i] < stack_b[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	int_array_copy(int *stack_a, int *sorted)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (stack_a && sorted && stack_a[++i])
 		sorted[i] = stack_a[i];
 	sorted[i] = '\0';
-}
-
-int	insert_sort(int *stack_a, int divide, int *sorted)
-{
-	int i;
-	int j;
-	int temp;
-	int_array_copy(stack_a, sorted);
-	i = -1;
-	while (sorted[++i])
-	{
-		j = i;
-		while (j > 0 && sorted[j - 1] > sorted[j])
-		{
-			temp = sorted[j];
-			sorted[j] = sorted[j - 1];
-			sorted[j - 1] = temp;
-			j--;
-		}
-	}
-	sorted[i] = '\0';
-	temp = sorted[i / divide];
-	return (temp);
 }
 
 // void	one_stack_printer(int *stack_a)

@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:33:01 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/06 20:33:30 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/09 02:45:24 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ra(int *stack_a)
 {
-	int i;
-	int temp;
+	int	i;
+	int	temp;
 
 	i = -1;
 	temp = stack_a[0];
@@ -47,8 +47,8 @@ void	rra(int *stack_a)
 
 void	rr(int *stack_a, int *stack_b)
 {
-	int i;
-	int temp;
+	int	i;
+	int	temp;
 
 	i = -1;
 	temp = stack_a[0];
@@ -67,8 +67,8 @@ void	rr(int *stack_a, int *stack_b)
 
 void	rb(int *stack_b)
 {
-	int i;
-	int temp;
+	int	i;
+	int	temp;
 
 	i = -1;
 	temp = stack_b[0];
