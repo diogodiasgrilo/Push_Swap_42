@@ -19,8 +19,8 @@ $(NAME): $(OBJS)
 
 runner:
 	gcc -Wall -Werror -Wextra -o push_swap *.c
-	mv push_swap ../push_swap_visualizer-master/build
-	cd ../push_swap_visualizer-master/build && ./bin/visualizer
+	mv push_swap ./push_swap_visualizer-master/build
+	cd ./push_swap_visualizer-master/build && ./bin/visualizer
 
 tester: $(SRCS)
 	cc $(CFLAGS) $(SRCS)

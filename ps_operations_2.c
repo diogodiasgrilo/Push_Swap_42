@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:33:01 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/09 02:45:24 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:18:55 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,32 +98,32 @@ void	rrb(int *stack_b)
 	write(1, "rrb\n", 4);
 }
 
-// void	rrr(int *stack_a, int *stack_b)
-// {
-// 	int	i;
-// 	int	temp;
+void	rrr(int *stack_a, int *stack_b)
+{
+	int	i;
+	int	temp;
 
-// 	i = 0;
-// 	while (stack_a[i])
-// 		i++;
-// 	temp = stack_a[i - 1];
-// 	i--;
-// 	while (i > 0)
-// 	{
-// 		stack_a[i] = stack_a[i - 1];
-// 		i--;
-// 	}
-// 	stack_a[0] = temp;
-// 	i = 0;
-// 	while (stack_b[i])
-// 		i++;
-// 	temp = stack_b[i - 1];
-// 	i--;
-// 	while (i > 0)
-// 	{
-// 		stack_b[i] = stack_b[i - 1];
-// 		i--;
-// 	}
-// 	stack_b[0] = temp;
-// 	write(1, "rrr\n", 4);
-// }
+	i = 0;
+	while (stack_a[i])
+		i++;
+	temp = stack_a[i - 1];
+	i--;
+	while (i > 0)
+	{
+		stack_a[i] = stack_a[i - 1];
+		i--;
+	}
+	stack_a[0] = temp;
+	i = 0;
+	while (stack_b[i])
+		i++;
+	temp = stack_b[i - 1];
+	i--;
+	while (i > 0)
+	{
+		stack_b[i] = stack_b[i - 1];
+		i--;
+	}
+	stack_b[0] = temp;
+	write(1, "rrr\n", 4);
+}
