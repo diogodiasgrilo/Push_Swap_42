@@ -2,11 +2,15 @@ NAME = push_swap.a
 
 SRCS =	$(wildcard *.c)
 
+BNS_SRCS = checker.c
+
 OBJS :=$(SRCS:.c=.o)
+
+BNS_OBJS :=$(BNS_SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all tester clean fclean runner re
+.PHONY: all tester bonus clean fclean runner re
 
 all: $(NAME)
 
@@ -14,7 +18,9 @@ all: $(NAME)
 	cc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
+	make -C libft
+	mv ./libft/libft.a .
+	ar rc $(NAME) libft.a $(OBJS)
 	ranlib $(NAME)
 
 runner:
@@ -24,6 +30,11 @@ runner:
 
 tester: $(SRCS)
 	cc $(CFLAGS) $(SRCS)
+
+bonus:
+	make re -C libft
+	mv ./libft/libft.a .
+	cc $(CFLAGS) ps_counters.c ps_operations.c ps_operations_2.c ps_sorting.c ps_utils.c $(BNS_SRCS) libft.a
 clean:
 	rm -f a.out
 	rm -f $(OBJS)

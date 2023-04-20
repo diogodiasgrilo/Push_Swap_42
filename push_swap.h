@@ -6,13 +6,14 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/09 07:17:47 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:19:04 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "./libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,6 +28,7 @@ void	rr(int *stack_a, int *stack_b);
 void	rb(int *stack_b);
 void	rrb(int *stack_b);
 void	rra(int *stack_a);
+void	rrr(int *stack_a, int *stack_b);
 int		count_all(int *stack);
 int		count_half(int *stack);
 int		ft_atoi(const char *str);

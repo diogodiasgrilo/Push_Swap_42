@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:41:40 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/19 18:29:19 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:54:56 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void command(char *line, int *stack_a, int *stack_b)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	*line;
-	int	*stack_a;
-	int	*stack_b;
+	int		i;
+	char	*line;
+	int		*stack_a;
+	int		*stack_b;
 
 	i = 0;
-	stack_a = (int *)malloc(sizeof(int) * argc - 1);
+	stack_a = (int *)malloc(sizeof(int) * argc + 1);
 	stack_b = (int *)ft_calloc(argc - 1, 4);
 	if (!stack_a || !stack_b)
 		return (0);
@@ -73,14 +73,18 @@ int	main(int argc, char **argv)
 	if (find_duplicates(stack_a) || find_non_letters(argv)
 		|| ft_is_sorted_a(stack_a))
 		return (free_and_return(stack_a, 0));
-	while (line = get_next_line(0))
+	while ((line = get_next_line(0)))
 	{
+		line[ft_strlen(line) - 1] = '\0';
 		if (check_action(line))
 			command(line, stack_a, stack_b);
 		else
-			(break);
+			break ;
 	}
-	if(!*stacl_b && ft_is_sorted_a(stack_a) && !*stack_b)
-				return (write(1, "OK\n", 3));
+	if(!*stack_b && ft_is_sorted_a(stack_a) && !*stack_b)
+		return (write(1, "OK\n", 3));
+	else
+		return (write(1, "KO\n", 3));
+		
 	return (free_and_return(stack_a, 0));
 }
