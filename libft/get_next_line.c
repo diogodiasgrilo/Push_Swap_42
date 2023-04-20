@@ -6,11 +6,11 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 16:57:08 by ddias             #+#    #+#             */
-/*   Updated: 2023/03/06 21:14:50 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:40:16 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*get_next_line(int fd)
 {

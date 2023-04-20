@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:37:54 by diogpere          #+#    #+#             */
-/*   Updated: 2023/03/05 14:37:55 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:24:22 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_calloc(int size, int type)
 	l_size = size;
 	memory = malloc(l_size * l_type);
 	if (!memory)
-		return (NULL);
+		return (0);
 	while (i < (l_size * l_type))
 	{
 		memory[i] = '\0';

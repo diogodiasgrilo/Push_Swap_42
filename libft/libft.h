@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:44:30 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/19 17:56:32 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/20 17:23:56 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_strlen(const char *str);
 void	ft_fixer_mover(char *buffer, int gate, int i);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 11
+#  define BUFFER_SIZE FOPEN_MAX
 # endif
 
 typedef struct s_list
