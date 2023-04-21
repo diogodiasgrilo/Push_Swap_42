@@ -34,7 +34,8 @@ tester: $(SRCS)
 bonus:
 	make re -C libft
 	mv ./libft/libft.a .
-	cc $(CFLAGS) ps_counters.c ps_operations.c ps_operations_2.c ps_sorting.c ps_utils.c $(BNS_SRCS) libft.a
+	cc $(CFLAGS) ps_counters.c ps_operations.c ps_operations_2.c \
+	ps_operations_3.c ps_sorting.c ps_utils.c $(BNS_SRCS) libft.a
 clean:
 	rm -f a.out
 	rm -f $(OBJS)

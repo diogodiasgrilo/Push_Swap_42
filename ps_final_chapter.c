@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:30:03 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/09 03:57:00 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:44:42 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	cutter(int *stack_a, int *stack_b, int *gate, int second_big)
 {
 	if (*gate == 0 && stack_b[0] == second_big)
 	{
-		pa(stack_a, stack_b, 0);
+		pa(stack_a, stack_b, 1);
 		*gate = 1;
 	}
 	if (find_biggest_index(stack_b) < count_all(stack_b) / 2
 		&& stack_b[0] != find_biggest_in_array(stack_b))
-		rb(stack_b);
+		rb(stack_b, 1);
 	else
-		rrb(stack_b);
+		rrb(stack_b, 1);
 }
 
 void	final_chapter(int *stack_a, int *stack_b)
@@ -44,10 +44,10 @@ void	final_chapter(int *stack_a, int *stack_b)
 		else
 			while (stack_b[0] != first_big)
 				cutter(stack_a, stack_b, &gate, second_big);
-		pa(stack_a, stack_b, 0);
+		pa(stack_a, stack_b, 1);
 		if (gate == 1 || stack_a[0] > stack_a[1])
-			sa(stack_a);
+			sa(stack_a, 1);
 	}
 	while (stack_a[count_all(stack_a)] != find_biggest_in_array(stack_a))
-		rra(stack_a);
+		rra(stack_a, 1);
 }

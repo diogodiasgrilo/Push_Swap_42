@@ -6,11 +6,19 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 05:45:14 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/09 05:45:44 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:41:48 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	free_and_return(int *stack, int gate)
+{
+	if (gate)
+		sa(stack, 1);
+	free(stack);
+	return (0);
+}
 
 int	ft_is_sorted_a(int *stack_a)
 {

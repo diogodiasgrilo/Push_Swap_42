@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/20 16:19:04 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:43:25 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-void	pb(int *stack_a, int *stack_b, int *counter);
-void	pa(int *stack_a, int *stack_b, int *counter);
-void	sb(int *stack_b);
-void	sa(int *stack_a);
-void	ss(int *stack_a, int *stack_b);
-void	ra(int *stack_a);
-void	rr(int *stack_a, int *stack_b);
-void	rb(int *stack_b);
-void	rrb(int *stack_b);
-void	rra(int *stack_a);
-void	rrr(int *stack_a, int *stack_b);
+void	pb(int *stack_a, int *stack_b, int prnt);
+void	pa(int *stack_a, int *stack_b, int prnt);
+void	sb(int *stack_b, int prnt);
+void	sa(int *stack_a, int prnt);
+void	ss(int *stack_a, int *stack_b, int prnt);
+void	ra(int *stack_a, int prnt);
+void	rr(int *stack_a, int *stack_b, int prnt);
+void	rb(int *stack_b, int prnt);
+void	rrb(int *stack_b, int prnt);
+void	rra(int *stack_a, int prnt);
+void	rrr(int *stack_a, int *stack_b, int prnt);
 int		count_all(int *stack);
 int		count_half(int *stack);
 int		ft_atoi(const char *str);
@@ -39,6 +39,7 @@ int		find_non_letters(char **argv);
 int		find_biggest_index(int *stack);
 int		find_biggest_in_array(int *stack_a);
 int		find_smallest_in_array(int *stack_a);
+int		free_and_return(int *stack, int gate);
 void	the_big_caller(int *stack_a, int argc);
 int		checker_for_end(int *stack_a, int middle);
 void	int_array_copy(int *stack_a, int *sorted);

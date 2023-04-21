@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:40:23 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/09 07:19:33 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:41:44 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push_swap(int *stack_a, int *stack_b, int magic_x2, int *sorted)
 	while (stack_a[count_all(stack_a)] < middle && counter < half
 		&& !ft_is_sorted_a(stack_a))
 	{
-		rra(stack_a);
+		rra(stack_a, 1);
 		counter += split_moves(stack_a, stack_b, magic_x2, sorted);
 	}
 	while (!checker_for_end(stack_a, middle))
@@ -35,7 +35,7 @@ void	push_swap(int *stack_a, int *stack_b, int magic_x2, int *sorted)
 			counter += split_moves(stack_a, stack_b, magic_x2, sorted);
 		else
 		{
-			ra(stack_a);
+			ra(stack_a, 1);
 			counter++;
 		}
 	}
@@ -59,7 +59,7 @@ void	the_big_caller(int *stack_a, int count)
 	while (count_all(stack_a) > 1)
 		push_swap(stack_a, stack_b, magic_x2, sorted);
 	if (!ft_is_sorted_a(stack_a))
-		sa(stack_a);
+		sa(stack_a, 1);
 	final_chapter(stack_a, stack_b);
 	free(sorted);
 	free(stack_b);
@@ -68,7 +68,7 @@ void	the_big_caller(int *stack_a, int count)
 int	free_and_return(int *stack, int gate)
 {
 	if (gate)
-		sa(stack);
+		sa(stack, 1);
 	free(stack);
 	return (0);
 }
@@ -78,6 +78,8 @@ int	main(int argc, char **argv)
 	int	i;
 	int	*stack_a;
 
+	if (argc == 1)
+		return (0);
 	i = 0;
 	stack_a = (int *)malloc(sizeof(int) * argc - 1);
 	if (!stack_a)
