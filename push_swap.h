@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/21 11:43:25 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/23 08:39:48 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	rb(int *stack_b, int prnt);
 void	rrb(int *stack_b, int prnt);
 void	rra(int *stack_a, int prnt);
 void	rrr(int *stack_a, int *stack_b, int prnt);
+
 int		count_all(int *stack);
 int		count_half(int *stack);
 int		ft_atoi(const char *str);

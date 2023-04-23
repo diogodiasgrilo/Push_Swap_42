@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:03:18 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/21 11:40:54 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/23 08:39:22 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	rr(int *stack_a, int *stack_b, int prnt)
 		stack_b[i] = stack_b[i + 1];
 	stack_b[i - 1] = temp;
 	stack_b[i] = '\0';
-    if (prnt)
-	    write(1, "rr\n", 3);
+	if (prnt)
+		write(1, "rr\n", 3);
 }
 
 void	rrr(int *stack_a, int *stack_b, int prnt)
@@ -56,6 +56,6 @@ void	rrr(int *stack_a, int *stack_b, int prnt)
 	while (--i > 0)
 		stack_b[i] = stack_b[i - 1];
 	stack_b[0] = temp;
-    if (prnt)
-	    write(1, "rrr\n", 4);
+	if (prnt)
+		write(1, "rrr\n", 4);
 }

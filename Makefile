@@ -38,7 +38,9 @@ bonus:
 	ps_operations_3.c ps_sorting.c ps_utils.c $(BNS_SRCS) libft.a
 clean:
 	rm -f a.out
+	rm -f libft.a
 	rm -f $(OBJS)
+	cd libft && make fclean
 
 fclean: clean
 	rm -f $(NAME)
