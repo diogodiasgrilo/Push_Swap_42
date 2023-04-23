@@ -6,15 +6,15 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 05:45:14 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/23 17:31:22 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:01:20 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	free_and_exit(int *stack)
+int	free_and_exit(int *stack, int gate)
 {
-	if (*stack && !ft_is_sorted_a(stack))
+	if (gate && !ft_is_sorted_a(stack))
 		sa(stack, 0);
 	free(stack);
 	exit(0);
@@ -68,10 +68,9 @@ int	insert_sort(int *stack_a, int divide, int *sorted)
 	return (temp);
 }
 
-int	ft_atoi(const char *str, int *stack_a)
+int	ft_atoi(const char *str)
 {
 	int	i;
-	int	j;
 	int	total;
 	int	sign;
 
@@ -84,14 +83,8 @@ int	ft_atoi(const char *str, int *stack_a)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		j = i;
-		while (--j >= 0)
-			if (str[i] == str[j])
-				free_and_exit((*stack_a = 0));
 		total *= 10;
 		total += str[i++] - 48;
 	}
-	if (str[i])
-		free_and_exit((*stack_a = 0));
 	return (total * sign);
 }

@@ -1,8 +1,18 @@
 NAME = push_swap.a
 
-SRCS =	$(wildcard *.c)
+SRCS =	push_swap.c \
+		ps_utils.c \
+		ps_utils2.c \
+		ps_sorting.c \
+		ps_operations_1.c \
+		ps_operations_2.c \
+		ps_operations_3.c \
+		ps_move_cutters.c \
+		ps_final_chapter.c \
 
-BNS_SRCS = checker.c
+BNS_SRCS = checker.c \
+			ps_bonus_utils.c \
+			ps_bonus_utils2.c \
 
 OBJS :=$(SRCS:.c=.o)
 
@@ -18,13 +28,11 @@ all: $(NAME)
 	cc $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	make -C libft
-	mv ./libft/libft.a .
-	ar rc $(NAME) libft.a $(OBJS)
+	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
 runner:
-	gcc -Wall -Werror -Wextra -o push_swap *.c
+	cc -Wall -Werror -Wextra $(SRCS) -o push_swap
 	mv push_swap ./push_swap_visualizer-master/build
 	cd ./push_swap_visualizer-master/build && ./bin/visualizer
 
@@ -32,15 +40,11 @@ tester: $(SRCS)
 	cc $(CFLAGS) $(SRCS)
 
 bonus:
-	make re -C libft
-	mv ./libft/libft.a .
-	cc $(CFLAGS) ps_counters.c ps_operations.c ps_operations_2.c \
+	cc $(CFLAGS) ps_counters.c ps_operations_1.c ps_operations_2.c \
 	ps_operations_3.c ps_sorting.c ps_utils.c $(BNS_SRCS) libft.a
 clean:
 	rm -f a.out
-	rm -f libft.a
 	rm -f $(OBJS)
-	cd libft && make fclean
 
 fclean: clean
 	rm -f $(NAME)

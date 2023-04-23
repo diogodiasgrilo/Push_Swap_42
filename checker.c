@@ -6,11 +6,11 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:41:40 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/23 17:32:57 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:01:23 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ps_bonus.h"
 
 void	stack_printer(int *stack_a, int *stack_b)
 {

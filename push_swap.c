@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:40:23 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/23 14:12:07 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:03:47 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	the_big_caller(int *stack_a, int count)
 	if (!ft_is_sorted_a(stack_a))
 		sa(stack_a, 1);
 	final_chapter(stack_a, stack_b);
-	free_and_exit(sorted);
-	free_and_exit(stack_b);
+	free_and_exit(sorted, 0);
+	free_and_exit(stack_b, 0);
 }
 
 int	main(int argc, char **argv)
@@ -70,8 +70,11 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 		return (0);
 	while (++i < argc)
-		stack_a[i - 1] = ft_atoi(argv[i], stack_a);
+		stack_a[i - 1] = ft_atoi(argv[i]);
+	if (find_duplicates(stack_a) || find_non_letters(argv)
+		|| ft_is_sorted_a(stack_a))
+		return (free_and_exit(stack_a, 0));
 	if (count_all(stack_a) == 1 || ft_is_sorted_a(stack_a))
-		(free_and_exit(stack_a));
+		(free_and_exit(stack_a, 1));
 	the_big_caller(stack_a, count_all(stack_a) + 1);
 }
