@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:30:03 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 12:01:36 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:03:26 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	final_chapter(int *stack_a, int *stack_b)
 	int	second_big;
 	int	gate;
 
-	while (*stack_b)
+	while (*stack_b != MAX_SORT)
 	{
 		if (gate != -1)
 			gate = 0;
@@ -48,6 +48,4 @@ void	final_chapter(int *stack_a, int *stack_b)
 		if (gate == 1 || stack_a[0] > stack_a[1])
 			sa(stack_a, 1);
 	}
-	while (stack_a[count_all(stack_a)] != find_biggest_in_array(stack_a))
-		rra(stack_a, 1);
 }

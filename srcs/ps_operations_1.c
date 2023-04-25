@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 12:01:40 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 11:27:57 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	pb(int *stack_a, int *stack_b, int prnt)
 	int	j;
 
 	j = 0;
-	while (stack_b[j])
+	while (stack_b[j] != MAX_SORT)
 		j++;
-	stack_b[j + 1] = 0;
+	stack_b[j + 1] = MAX_SORT;
 	while (j >= 0)
 	{
 		stack_b[j] = stack_b[j - 1];
@@ -28,9 +28,9 @@ void	pb(int *stack_a, int *stack_b, int prnt)
 	stack_b[0] = stack_a[0];
 	stack_a[0] = 0;
 	j = 0;
-	while (stack_a[++j])
+	while (stack_a[++j] != MAX_SORT)
 		stack_a[j - 1] = stack_a[j];
-	stack_a[j - 1] = 0;
+	stack_a[j - 1] = MAX_SORT;
 	if (prnt)
 		write(1, "pb\n", 3);
 }
@@ -40,20 +40,20 @@ void	pa(int *stack_a, int *stack_b, int prnt)
 	int	j;
 
 	j = 0;
-	while (stack_a[j])
+	while (stack_a[j] != MAX_SORT)
 		j++;
-	stack_a[j + 1] = 0;
+	stack_a[j + 1] = MAX_SORT;
 	while (j > 0)
 	{
 		stack_a[j] = stack_a[j - 1];
 		j--;
 	}
 	stack_a[0] = stack_b[0];
-	stack_b[0] = 0;
+	stack_b[0] = MAX_SORT;
 	j = 0;
-	while (stack_b[++j])
+	while (stack_b[++j] != MAX_SORT)
 		stack_b[j - 1] = stack_b[j];
-	stack_b[j - 1] = 0;
+	stack_b[j - 1] = MAX_SORT;
 	if (prnt)
 		write(1, "pa\n", 3);
 }

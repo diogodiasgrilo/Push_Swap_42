@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 07:16:00 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 12:01:39 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:57:15 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	checker_for_end(int *stack_a, int middle)
 	int	checker;
 
 	checker = 0;
-	while (stack_a[checker] >= middle)
+	while (stack_a[checker] >= middle && stack_a[checker] != MAX_SORT)
 		checker++;
-	if (!stack_a[checker])
+	if (stack_a[checker] == MAX_SORT)
 		return (1);
 	return (0);
 }

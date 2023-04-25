@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 05:45:14 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 15:44:53 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:20:17 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ int	free_and_exit(int *stack, int gate)
 	exit(0);
 }
 
-int	count_all(int *stack)
+void	small_call(int *stack_a)
 {
-	int	i;
-
-	i = 0;
-	while (stack && stack[i])
-		i++;
-	return (i - 1);
+	if (stack_a[0] > stack_a[1])
+		sa(stack_a, 1);
+	if (stack_a[1] > stack_a[2])
+		rra(stack_a, 1);
+	if (stack_a[0] > stack_a[2])
+		ra(stack_a, 1);
+	free_and_exit(stack_a, 0);
 }
 
 int	ft_is_sorted_a(int *stack_a)
@@ -37,9 +38,9 @@ int	ft_is_sorted_a(int *stack_a)
 	int	i;
 
 	i = 0;
-	while (*stack_a && stack_a[i + 1])
+	while (*stack_a != MAX_SORT && stack_a[i + 1] != MAX_SORT)
 	{
-		if (*stack_a && stack_a[i] > stack_a[i + 1])
+		if (stack_a[i] > stack_a[i + 1])
 			return (0);
 		i++;
 	}
@@ -54,7 +55,7 @@ int	insert_sort(int *stack_a, int divide, int *sorted)
 
 	int_array_copy(stack_a, sorted);
 	i = -1;
-	while (sorted[++i])
+	while (sorted[++i] != MAX_SORT)
 	{
 		j = i;
 		while (j > 0 && sorted[j - 1] > sorted[j])
@@ -65,7 +66,7 @@ int	insert_sort(int *stack_a, int divide, int *sorted)
 			j--;
 		}
 	}
-	sorted[i] = '\0';
+	sorted[i] = MAX_SORT;
 	temp = sorted[i / divide];
 	return (temp);
 }
