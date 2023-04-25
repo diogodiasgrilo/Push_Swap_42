@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:13:30 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 15:36:58 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:37:11 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #  define BUFFER_SIZE 1000
 # endif
 
+# define MAX_SORT 100000
+
 void	pb(int *stack_a, int *stack_b, int prnt);
 void	pa(int *stack_a, int *stack_b, int prnt);
 void	sb(int *stack_b, int prnt);
@@ -36,13 +38,14 @@ void	rrr(int *stack_a, int *stack_b, int prnt);
 
 int		ft_tidy(char *buffer);
 int		count_all(int *stack);
+void	stack_free(int *stack);
 int		ft_strlen(const char *s);
 int		find_duplicates(int *stack);
 int		ft_is_sorted_a(int *stack_a);
 int		find_non_letters(char **argv);
-void	*ft_calloc(int size, int type);
 char	*ft_strjoin(char *s1, char *s2);
 int		action_taker(int *stack_a, int *stack_b);
+void	stack_printer(int *stack_a, int *stack_b);
 void	ft_fixer_mover(char *buffer, int gate, int i);
 int		fstrncmp(const char *s1, const char *s2, int n);
 int		free_both_exit(int *stack_a, int *stack_b, int gate);
