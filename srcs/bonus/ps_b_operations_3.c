@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:03:18 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 12:45:27 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:27:02 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	rr(int *stack_a, int *stack_b, int prnt)
 
 	i = -1;
 	temp = stack_a[0];
-	while (stack_a[++i])
+	while (stack_a[++i] != MAX_SORT)
 		stack_a[i] = stack_a[i + 1];
 	stack_a[i - 1] = temp;
 	stack_a[i] = '\0';
 	i = -1;
 	temp = stack_b[0];
-	while (stack_b[++i])
+	while (stack_b[++i] != MAX_SORT)
 		stack_b[i] = stack_b[i + 1];
 	stack_b[i - 1] = temp;
-	stack_b[i] = '\0';
+	stack_b[i] = MAX_SORT;
 	if (prnt)
 		write(1, "rr\n", 3);
 }
@@ -39,7 +39,7 @@ void	rrr(int *stack_a, int *stack_b, int prnt)
 	int	temp;
 
 	i = 0;
-	while (stack_a[i])
+	while (stack_a[i] != MAX_SORT)
 		i++;
 	temp = stack_a[i - 1];
 	i--;
@@ -50,7 +50,7 @@ void	rrr(int *stack_a, int *stack_b, int prnt)
 	}
 	stack_a[0] = temp;
 	i = 0;
-	while (stack_b[i])
+	while (stack_b[i] != MAX_SORT)
 		i++;
 	temp = stack_b[i - 1];
 	while (--i > 0)

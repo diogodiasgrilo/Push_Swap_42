@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 11:56:54 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 15:34:38 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:37:01 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,33 @@ int	find_duplicates(int *stack)
 
 	i = -1;
 	j = 0;
-	while (stack && stack[++i])
+	while (stack[++i] != MAX_SORT)
 	{
 		j = i;
-		while (stack[++j])
+		while (stack[++j] != MAX_SORT)
 			if (stack[i] == stack[j])
 				return (1);
 	}
 	return (0);
+}
+
+void	stack_printer(int *stack_a, int *stack_b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (stack_a[i] || stack_b[j])
+	{
+		if (stack_a[i] == 0 || stack_a[i])
+			printf("%d\t", stack_a[i]);
+		else
+			printf("\t");
+		if (stack_a[i] == 0 || stack_a[i])
+			printf("%d", stack_b[j]);
+		printf("\n");
+		i++;
+		j++;
+	}
 }

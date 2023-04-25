@@ -6,17 +6,27 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 18:13:10 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 15:38:41 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:35:13 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps_bonus.h"
 
+void	stack_free(int *stack)
+{
+	int	i;
+
+	i = -1;
+	while (stack[++i] != MAX_SORT)
+		stack[i] = 0;
+	stack[i] = '\0';
+}
+
 int	free_both_exit(int *stack_a, int *stack_b, int gate)
 {
 	write(1, "Error\n", 6);
-	free(stack_a);
-	free(stack_b);
+	stack_free(stack_a);
+	stack_free(stack_b);
 	if (gate)
 		exit(1);
 	exit(0);
@@ -48,25 +58,4 @@ int	fstrncmp(const char *s1, const char *s2, int n)
 	c1 = s1[i];
 	c2 = s2[i];
 	return (c1 - c2);
-}
-
-void	*ft_calloc(int size, int type)
-{
-	unsigned long int	i;
-	unsigned long int	l_size;
-	unsigned long int	l_type;
-	char				*memory;
-
-	i = 0;
-	l_type = type;
-	l_size = size;
-	memory = malloc(l_size * l_type);
-	if (!memory)
-		return (0);
-	while (i < (l_size * l_type))
-	{
-		memory[i] = '\0';
-		i++;
-	}
-	return (memory);
 }

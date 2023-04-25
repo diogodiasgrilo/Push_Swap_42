@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 17:20:49 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/24 15:38:53 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:30:54 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	action_taker(int *stack_a, int *stack_b)
 	char		*line;
 	int			i;
 
-	line = NULL;
+	line = 0;
 	if (read(0, 0, 0) < 0 || BUFFER_SIZE <= 0)
 	{
 		i = 0;
