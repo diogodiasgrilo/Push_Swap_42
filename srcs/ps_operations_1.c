@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:09:41 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/25 11:27:57 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 09:37:08 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	pb(int *stack_a, int *stack_b, int prnt)
 	while (stack_b[j] != MAX_SORT)
 		j++;
 	stack_b[j + 1] = MAX_SORT;
-	while (j >= 0)
+	while (j > 0)
 	{
 		stack_b[j] = stack_b[j - 1];
 		j--;

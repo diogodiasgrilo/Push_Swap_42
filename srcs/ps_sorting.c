@@ -6,30 +6,29 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 05:45:14 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/25 14:20:17 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 10:18:24 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	free_and_exit(int *stack, int gate)
+int	is_done(int *stack_a, int *stack_b)
 {
-	if (!gate && !ft_is_sorted_a(stack))
-		sa(stack, 1);
-	free(stack);
-	if (gate)
-		exit(1);
-	exit(0);
+	if (ft_is_sorted_a(stack_a) && *stack_b == MAX_SORT)
+		return (1);
+	return (0);
 }
 
 void	small_call(int *stack_a)
 {
 	if (stack_a[0] > stack_a[1])
 		sa(stack_a, 1);
-	if (stack_a[1] > stack_a[2])
+	if (stack_a[1] > stack_a[2] && stack_a[2] != MAX_SORT)
 		rra(stack_a, 1);
-	if (stack_a[0] > stack_a[2])
+	if (stack_a[0] > stack_a[2] && stack_a[2] != MAX_SORT)
 		ra(stack_a, 1);
+	if (!ft_is_sorted_a(stack_a))
+		sa(stack_a, 1);
 	free_and_exit(stack_a, 0);
 }
 
@@ -71,29 +70,12 @@ int	insert_sort(int *stack_a, int divide, int *sorted)
 	return (temp);
 }
 
-int	ft_atoi(const char *str, int *stack_a)
+int	str_arg(char **arg)
 {
-	long int	i;
-	long int	total;
-	int			sign;
+	int	i;
 
-	total = 0;
 	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (arg && arg[i])
 		i++;
-	sign = (str[i] != '-') - (str[i] == '-');
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		total *= 10;
-		total += str[i++] - 48;
-	}
-	total *= sign;
-	if (total > INT_MAX || total < INT_MIN)
-	{
-		write(1, "Error\n", 6);
-		free_and_exit(stack_a, 1);
-	}
-	return (total);
+	return (i);
 }
