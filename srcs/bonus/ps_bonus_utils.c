@@ -5,104 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/23 17:20:49 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/25 13:30:54 by diogpere         ###   ########.fr       */
+/*   Created: 2023/04/23 18:13:10 by diogpere          #+#    #+#             */
+/*   Updated: 2023/04/27 10:50:32 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ps_bonus.h"
 
-int	ft_bonus_atoi(const char *str, int *stack_a, int *stack_b)
+int	ft_strlen(const char *s)
 {
-	long int	i;
-	long int	total;
-	int			sign;
+	int	i;
 
-	total = 0;
 	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	while (s && s[i])
 		i++;
-	sign = (str[i] != '-') - (str[i] == '-');
-	if (str[i] == '-' || str[i] == '+')
+	return (i);
+}
+
+int	str_arg(char **arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg && arg[i])
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		total *= 10;
-		total += str[i++] - 48;
-	}
-	total *= sign;
-	if (total > INT_MAX || total < INT_MIN)
-		free_both_exit(stack_a, stack_b, 1);
-	return (total);
+	return (i);
 }
 
-int	check_action(char *line)
+int	fstrncmp(const char *s1, const char *s2, int n)
 {
-	int		i;
-	char	**comds;
+	unsigned char	c1;
+	unsigned char	c2;
+	int				i;
 
-	comds = (char *[]){"pa", "pb", "sa", "sb", "ss", "ra", "rb", "rr", "rra",
-		"rrb", "rrr", 0};
-	i = -1;
-	while (comds[++i])
-		if (!fstrncmp(line, comds[i], ft_strlen(line)))
-			return (1);
-	return (0);
-}
-
-void	command(char *line, int *stack_a, int *stack_b)
-{
-	if (!fstrncmp(line, "sa", 2) && stack_a[0] && stack_a[1])
-		sa(stack_a, 0);
-	else if (!fstrncmp(line, "sb", 2) && stack_b[0] && stack_b[1])
-		sb(stack_b, 0);
-	else if (!fstrncmp(line, "ss", 2) && stack_a[0] && stack_b[0])
-		ss(stack_a, stack_b, 0);
-	else if (!fstrncmp(line, "pa", 2) && stack_b[0])
-		pa(stack_a, stack_b, 0);
-	else if (!fstrncmp(line, "pb", 2) && stack_a[0])
-		pb(stack_a, stack_b, 0);
-	else if (!fstrncmp(line, "ra", 2) && stack_a[0] && stack_a[1])
-		ra(stack_a, 0);
-	else if (!fstrncmp(line, "rb", 2) && stack_b[0] && stack_b[1])
-		rb(stack_b, 0);
-	else if (!fstrncmp(line, "rra", 3) && stack_a[0] && stack_a[1])
-		rra(stack_a, 0);
-	else if (!fstrncmp(line, "rrb", 3) && stack_b[0] && stack_b[1])
-		rrb(stack_b, 0);
-	else if (!fstrncmp(line, "rrr", 3) && stack_a[0] && stack_b[0] && stack_a[1]
-		&& stack_b[1])
-		rrr(stack_a, stack_b, 0);
-	else if (!fstrncmp(line, "rr", 2) && stack_a[0] && stack_b[0] && stack_a[1]
-		&& stack_b[1])
-		rr(stack_a, stack_b, 0);
-	free(line);
-}
-
-int	action_taker(int *stack_a, int *stack_b)
-{
-	static char	buffer[BUFFER_SIZE + 1];
-	char		*line;
-	int			i;
-
-	line = 0;
-	if (read(0, 0, 0) < 0 || BUFFER_SIZE <= 0)
-	{
-		i = 0;
-		while (buffer[i])
-			buffer[i++] = '\0';
+	i = 0;
+	if (n == 0 || (!*s1 && !*s2))
 		return (0);
+	if (n < 0)
+		return (-1);
+	while (s1[i] == s2[i] && i < n - 1 && s1[i] && s2[i])
+		i++;
+	c1 = s1[i];
+	c2 = s2[i];
+	return (c1 - c2);
+}
+
+void	stack_printer(int *stack_a, int *stack_b)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (stack_a[i] != MAX_SORT || stack_b[j] != MAX_SORT)
+	{
+		if (stack_a[i] != MAX_SORT)
+			printf("%d", stack_a[i++]);
+		printf("\t");
+		if (stack_b[j] != MAX_SORT)
+			printf("%d", stack_b[j++]);
+		printf("\n");
 	}
-	if (*buffer || read(0, buffer, BUFFER_SIZE) > 0)
-		line = ft_strjoin(line, buffer);
-	(ft_tidy(buffer));
-	if (line && line[ft_strlen(line) - 1] == '\n')
-		line[ft_strlen(line) - 1] = '\0';
-	if (line && check_action(line))
-		command(line, stack_a, stack_b);
-	else if (line)
-		free_both_exit(stack_a, stack_b, 1);
-	if (!line)
-		return (0);
-	return (1);
+	printf("\n");
 }
