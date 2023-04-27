@@ -1,8 +1,10 @@
 NAME = push_swap
 
-SRCS =	./srcs/push_swap.c \
+SRCS =	./srcs/ps_split.c \
+		./srcs/push_swap.c \
 		./srcs/ps_utils.c \
-		./srcs/ps_utils2.c \
+		./srcs/ps_exits.c \
+		./srcs/ps_errors.c \
 		./srcs/ps_sorting.c \
 		./srcs/ps_operations_1.c \
 		./srcs/ps_operations_2.c \
@@ -11,13 +13,15 @@ SRCS =	./srcs/push_swap.c \
 		./srcs/ps_final_chapter.c \
 
 BNS_SRCS = ./srcs/bonus/checker.c \
-			./srcs/bonus/ps_b_operations_1.c \
-			./srcs/bonus/ps_b_operations_2.c \
-			./srcs/bonus/ps_b_operations_3.c \
 			./srcs/bonus/ps_b_sorting.c \
 			./srcs/bonus/ps_bonus_utils.c \
-			./srcs/bonus/ps_bonus_utils2.c \
-			./srcs/bonus/ps_bonus_utils3.c \
+			./srcs/bonus/ps_b_erros.c \
+			./srcs/bonus/ps_b_exits.c \
+			./srcs/bonus/ps_b_moves.c \
+			./srcs/ps_operations_1.c \
+			./srcs/ps_operations_2.c \
+			./srcs/ps_operations_3.c \
+			./srcs/ps_split.c \
 
 OBJS :=$(SRCS:.c=.o)
 
@@ -29,8 +33,7 @@ all: $(NAME)
 	@echo "$(GREEN)Bada-bing...push_swap MADE!$(DEFAULT)"
 
 $(NAME): $(OBJS)
-	@cc $(CFLAGS) $(OBJS) -o $(NAME)
-	@rm -f $(OBJS)
+	cc $(CFLAGS) $(OBJS) -o $(NAME) -fsanitize=address
 
 runner:
 	@cc -Wall -Werror -Wextra $(SRCS) -o push_swap
@@ -41,9 +44,8 @@ tester: $(SRCS)
 	cc $(CFLAGS) $(SRCS)
 
 bonus:
-	@cc $(CFLAGS) $(BNS_SRCS) -o checker
+	cc $(CFLAGS) $(BNS_SRCS) -o checker -fsanitize=address
 	@echo "$(GREEN)There's the bonus, DONE!$(DEFAULT)"
-	@rm -f ./bonus/$(BNS_OBJS)
 
 clean:
 	@rm -f $(OBJS)
