@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:32:21 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/25 14:20:34 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 10:26:08 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,21 @@ void	rrb(int *stack_b, int prnt);
 void	rra(int *stack_a, int prnt);
 void	rrr(int *stack_a, int *stack_b, int prnt);
 
+int		str_arg(char **arg);
 int		count_all(int *stack);
 void	stack_free(int *stack);
 void	small_call(int *stack_a);
-int		find_duplicates(int *stack);
 int		ft_is_sorted_a(int *stack_a);
-int		find_non_letters(char **argv);
 int		find_biggest_index(int *stack);
+int		count_strings(char *str, char c);
+char	**ft_split(char const *s, char c);
 int		is_done(int *stack_a, int *stack_b);
 int		free_and_exit(int *stack, int gate);
 int		find_biggest_in_array(int *stack_a);
 int		ft_atoi(const char *str, int *stack_a);
 void	the_big_caller(int *stack_a, int argc);
+int		find_duplicates(char **argv, int start);
+int		find_non_letters(char **argv, int start);
 void	stack_printer(int *stack_a, int *stack_b);
 int		checker_for_end(int *stack_a, int middle);
 void	int_array_copy(int *stack_a, int *sorted);
