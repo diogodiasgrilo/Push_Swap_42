@@ -33,10 +33,10 @@ all: $(NAME)
 	@echo "$(GREEN)Bada-bing...push_swap MADE!$(DEFAULT)"
 
 $(NAME): $(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME) -fsanitize=address
+	cc $(CFLAGS) -fsanitize=address $(OBJS) -o $(NAME) 
 
 runner:
-	@cc -Wall -Werror -Wextra $(SRCS) -o push_swap
+	cc -Wall -Werror -Wextra $(SRCS) -o push_swap
 	@mv push_swap ./push_swap_visualizer-master/build
 	@cd ./push_swap_visualizer-master/build && ./bin/visualizer
 
@@ -44,7 +44,7 @@ tester: $(SRCS)
 	cc $(CFLAGS) $(SRCS)
 
 bonus:
-	cc $(CFLAGS) $(BNS_SRCS) -o checker -fsanitize=address
+	cc $(CFLAGS) -fsanitize=address $(BNS_SRCS) -o checker 
 	@echo "$(GREEN)There's the bonus, DONE!$(DEFAULT)"
 
 clean:
