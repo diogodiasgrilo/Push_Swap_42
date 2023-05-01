@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 19:13:30 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/27 10:56:42 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:22:38 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int		ft_tidy(char *buffer);
 int		count_all(int *stack);
 void	stack_free(int *stack);
 int		ft_strlen(const char *s);
+int		find_duplicates(char **argv);
+int		find_non_letters(char **argv);
 int		ft_is_sorted_a(int *stack_a);
 char	*ft_strjoin(char *s1, char *s2);
 int		count_strings(char *str, char c);
 char	**ft_split(char const *s, char c);
-int		find_duplicates(char **argv, int start);
-int		find_non_letters(char **argv, int start);
 int		action_taker(int *stack_a, int *stack_b);
 void	stack_printer(int *stack_a, int *stack_b);
 void	ft_fixer_mover(char *buffer, int gate, int i);
