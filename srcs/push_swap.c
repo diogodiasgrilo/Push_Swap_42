@@ -68,7 +68,7 @@ void	first_call(int argc, char **argv, int start, int sub)
 {
 	int		*stack_a;
 
-	if (find_duplicates(argv, start) || find_non_letters(argv, start))
+	if (find_duplicates(argv) || find_non_letters(argv))
 		free_and_exit(0, 1);
 	if ((argc == 2 && ft_atoi(argv[1], 0)) || (argc == 3 && \
 		ft_atoi(argv[1], 0) < ft_atoi(argv[2], 0)))
@@ -82,7 +82,7 @@ void	first_call(int argc, char **argv, int start, int sub)
 	if (argc == 4 && sub == 1)
 		small_call(stack_a);
 	if (!ft_is_sorted_a(stack_a))
-		the_big_caller(stack_a, argc - start);
+		the_big_caller(stack_a, count_all(stack_a) + 1);
 	stack_free(stack_a);
 }
 

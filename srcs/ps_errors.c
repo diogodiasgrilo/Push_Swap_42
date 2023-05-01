@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 22:36:43 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/27 10:14:45 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:28:20 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,46 @@ int	ft_atoi(const char *str, int *stack_a)
 		total += str[i++] - 48;
 	}
 	total *= sign;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
 	if ((total > INT_MAX || total < INT_MIN || str[i]))
 		free_and_exit(stack_a, 1);
 	return (total);
 }
 
-int	find_non_letters(char **argv, int start)
+int	find_non_letters(char **argv)
 {
+	int	i;
 	int	j;
 
-	while (argv[++start])
+	i = -1;
+	while (argv[++i])
 	{
-		if (argv[start][0] == 0)
-			return (0);
 		j = -1;
-		while (argv[start][++j])
+		while (argv[i][++j])
 		{
-			if ((argv[start][j] < 48 || argv[start][j] > 57) \
-				&& argv[start][j] != '-' && argv[start][j] != '+')
+			if ((argv[i][j] < 48 || argv[i][j] > 57) \
+				&& argv[i][j] != '-' && argv[i][j] != '+' \
+				&& argv[i][j] != ' ')
 				return (1);
 		}
 	}
 	return (0);
 }
 
-int	find_duplicates(char **argv, int start)
-{
+int	find_duplicates(char **argv)
+{	
+	int	i;
 	int	j;
 
+	i = -1;
 	j = 0;
-	while (argv[++start])
+	while (argv[++i])
 	{
-		if (argv[start][0] == 0)
-			return (0);
-		j = start;
+		j = i;
 		while (argv[++j])
 		{
-			if (ft_atoi(argv[start], 0) == ft_atoi(argv[j], 0))
+			if (ft_atoi(argv[i], 0) == ft_atoi(argv[j], 0))
 				return (1);
 		}
 	}
