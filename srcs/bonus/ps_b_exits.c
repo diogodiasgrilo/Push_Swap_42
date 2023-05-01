@@ -6,7 +6,7 @@
 /*   By: diogpere <diogpere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 09:17:26 by diogpere          #+#    #+#             */
-/*   Updated: 2023/04/27 10:54:28 by diogpere         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:18:05 by diogpere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	stack_free(int *stack)
 {
 	int	i;
 
-	i = -1;
-	while (stack && stack[++i] != MAX_SORT)
-		stack[i] = 1;
+	i = 0;
+	while (stack && stack[i] != MAX_SORT)
+		i++;
+	if (stack[i])
+		stack[i + 1] = '\0';
 	if (stack)
 	{
-		stack[i] = '\0';
 		if (stack[0])
 			free(stack);
 	}	
